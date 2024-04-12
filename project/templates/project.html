@@ -1,12 +1,31 @@
-{% extends "base.html" %}
-
+{% extends 'base.html' %}
+{% block title %}
+  Hydra Core || Projects
+{% endblock %}
 {% block content %}
-    {% include "includes/header.html" %}
-    <h1>{{ project.name }}</h1>
-    <h2> {{ project.description}} </h2>
+  {% include 'includes/header.html' %}
 
-    <a href="{% url 'project:edit-project' project.id %}">Update</a> ||
-    <a href="{% url 'project:delete-project' project.id %}">Delete</a>
-
-    {% include "includes/footer.html" %}
-{% endblock  %}
+  <div class="container is-max-desktop">
+    <section class="featured">
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <h2 class="subtitle">{{ project.name }}</h2>
+          </div>
+        </div>
+        <div class="level-right">
+          <div class="level-item">
+            <a href="{% url 'project:edit-project' project.id %}" class="button is-link">Edit</a>
+          </div>
+          <div class="level-item">
+            <a href="{% url 'project:delete-project' project.id %}" class="button is-danger">Delete</a>
+          </div>
+        </div>
+      </div>
+      <div class="columns">
+        
+      </div>
+    </section>
+  </div>
+  {% include 'includes/footer.html' %}
+{% endblock %}

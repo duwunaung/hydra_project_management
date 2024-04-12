@@ -1,15 +1,36 @@
 {% extends 'base.html' %}
-
+{% block title %}
+  Hydra Core || Projects
+{% endblock %}
 {% block content %}
   {% include 'includes/header.html' %}
-  <h1>Projects</h1>
-  <a href="{% url 'project:create-project' %}">Add Project</a>
-  <ul>
-    {% for project in projects %}
-      <li>
-        <a href="{% url 'project:detail-project' project.id %}">{{ project.name }} ( {{ project.description }} )</a>
-      </li>
-    {% endfor %}
-  </ul>
+
+  <div class="container is-max-desktop">
+    <section class="featured">
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <h2 class="subtitle">Project List</h2>
+          </div>
+        </div>
+        <div class="level-right">
+          <div class="level-item">
+            <a href="{% url 'project:create-project' %}" class="button is-link">Add Project</a>
+          </div>
+        </div>
+      </div>
+      <div class="columns">
+        {% for project in projects %}
+          <div class="column is-3">
+            <article class="box">
+              <h2 class="is-size-5">{{ project.name }}</h2>
+              <p class="is-size-7">{{ project.description }}</p>
+              <a href="{% url 'project:detail-project' project.id %}">Read More</a>
+            </article>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
   {% include 'includes/footer.html' %}
 {% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Hydra Core || Project
+{% endblock  %}
+{% block content %}
+    {% include "includes/header.html" %}
+    <h1>{{ project.name }}</h1>
+    <h2> {{ project.description}} </h2>
+
+    <a href="{% url 'project:edit-project' project.id %}">Update</a> ||
+    <a href="{% url 'project:delete-project' project.id %}">Delete</a>
+
+    {% include "includes/footer.html" %}
+{% endblock  %}

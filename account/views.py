@@ -30,3 +30,7 @@ def login(request):
             
 
     return render(request, "login.html")
+
+
+def template(request):
+    return render(request, "template.html")
