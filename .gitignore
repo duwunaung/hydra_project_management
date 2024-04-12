@@ -1,0 +1,6 @@
+
+/account/__pycache__
+/account/migrations
+/backbone/__pycache__
+/backbone/migrations
+db.sqlite3

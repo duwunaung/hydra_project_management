@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Home Page
+{% endblock  %}
+
+{% block content %}
+    {% include "includes/header.html" %}
+    <h1>Signup</h1>
+
+    <form action="." method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name">
+            <br>
+            <br>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
+            <br>
+            <br>
+        </div>
+        <div>
+            <label for="password1">Password</label>
+            <input type="password" name="password1" id="password1">
+            <br>
+            <br>
+        </div>
+        <div>
+            <label for="password2">Retype Password</label>
+            <input type="password" name="password2" id="password2">
+            <br>
+            <br>
+        </div>
+        <button>Signup</button>
+        <button><a href="/">Cancel</a></button>
+    </form>
+    {% include "includes/footer.html" %}
+{% endblock  %}
