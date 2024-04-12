@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  Hydra Core || ToDo List
+{% endblock %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static 'account.css' %}" />
+{% endblock %}
+{% block content %}
+  {% include 'includes/header.html' %}
+
+  <div class="container is-max-desktop">
+    <section class="featured">
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <h2 class="title">{{ todolist.name }}</h2>
+            <h2 class="subtitle">({{ todolist.description }})</h2>
+          </div>
+        </div>
+        <div class="level-right">
+          <div class="level-item">
+            <a href="{% url 'task:add-task' project.id todolist.id %}" class="button is-success">Add Task</a>
+          </div>
+          <div class="level-item">
+            <a href="{% url 'todolist:edit-todolist' project.id todolist.id%}" class="button is-link">Edit</a>
+          </div>
+          <div class="level-item">
+            <a href="{% url 'todolist:delete-todolist' project.id  todolist.id %}" class="button is-danger">Delete</a>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        
+      <div class="columns is-multiline">
+        
+        <div class="column is-6">
+            <div class="category">
+                
+            <h1 class="title is-5">
+                Tasks <span>({{ todolist.tasks.all|length }} in total)</span>
+              </h1>
+                <ul>
+                  {% for task in todolist.tasks.all %}
+                    <li>
+                    <i class="fas fa-caret-right fa-xs icon-padding-right" /></i>
+                    <label class="has-text-black-bis has-text-weight-bold	">
+                      {% if not task.is_done %}
+                        <a href="{% url 'task:detail-task' todolist.project.id todolist.id task.id %}">{{task.name}}</a>
+                      {% else %}
+                        <a href="{% url 'task:detail-task' todolist.project.id todolist.id task.id %} " style="text-decoration: line-through;" >{{task.name}}</a>
+                      {% endif %}
+                      
+                    </label>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% comment %} {% for todo in todolist %}
+        
+        {% endfor %} {% endcomment %}
+      </div>
+      </div>
+    </section>
+  </div>
+  {% include 'includes/footer.html' %}
+{% endblock %}

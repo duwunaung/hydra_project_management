@@ -15,28 +15,29 @@
     <div class="hero-body has-text-centered">
       <div class="login">
         <h1 class="title">Hydra Core</h1>
-        <h2 class="subtitle">Adding New Project</h2>
+        <br>
+        <h2 class="subtitle">Adding ToDo List to <strong>"{{ project.name }}"</strong></h2>
         <form action="." method="POST">
           {% csrf_token %}
 
           <div class="field">
             <div class="control">
-              <input class="input is-medium is-rounded" type="text" placeholder="Project Title" name="name" value="{{project.name}}" required />
+              <input class="input is-medium is-rounded" type="text" placeholder="List Name" name="name" value="{{todolist.name}}" required />
             </div>
           </div>
 
           <div class="field">
             <div class="control">
-              <input class="input is-medium is-rounded" type="text" placeholder="Description" name="description" value="{{project.description}}" required />
+              <input class="input is-medium is-rounded" type="text" placeholder="Description" name="description" value="{{todolist.description}}" required />
             </div>
           </div>
-          <button class="button is-block is-fullwidth is-primary is-medium is-rounded" type="submit">Update Project</button>
+          <button class="button is-block is-fullwidth is-primary is-medium is-rounded" type="submit">Update</button>
         </form>
 
         <nav class="level">
           <div class="level-item has-text-centered">
             <div>
-              <a href="{% url 'project:projects' %}">Cancel</a>
+              <a href="{% url 'project:detail-project' todolist.project.id %}">Cancel</a>
             </div>
           </div>
         </nav>

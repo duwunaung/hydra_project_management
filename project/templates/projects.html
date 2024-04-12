@@ -19,13 +19,14 @@
           </div>
         </div>
       </div>
-      <div class="columns">
+      <div class="columns is-multiline">
         {% for project in projects %}
           <div class="column is-3">
             <article class="box">
               <h2 class="is-size-5">{{ project.name }}</h2>
               <p class="is-size-7">{{ project.description }}</p>
-              <a href="{% url 'project:detail-project' project.id %}">Read More</a>
+              <br>
+              <a href="{% url 'project:detail-project' project.id %}">View</a>
             </article>
           </div>
         {% endfor %}

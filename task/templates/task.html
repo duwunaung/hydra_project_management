@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  Hydra Core || Task
+{% endblock %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static 'account.css' %}" />
+{% endblock %}
+{% block content %}
+  {% include 'includes/header.html' %}
+
+  <div class="container is-max-desktop">
+    <section class="featured">
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <h2 class="title">{{ task.name }}</h2>
+          </div>
+        </div>
+        <div class="level-right">
+          <div class="level-item">
+            <a href="{% url 'task:edit-task' task.project.id task.todolist.id task.id %}" class="button is-link">Edit</a>
+            
+          </div>
+          <div class="level-item">
+            <a href="{% url "task:delete-task" task.project.id task.todolist.id task.id %}" class="button is-danger">Delete</a>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="columns is-multiline">
+          <div class="column is-6">
+            <h2 class="subtitle">
+              <strong class="font-bold">Status:</strong>{% if task.is_done %}
+                Done
+              {% else %}
+                Pending
+              {% endif %}
+            </h2>
+
+            {% if not task.is_done %}
+              <a href="?is_done=yes" class="button is-success">Mark as Done</a>
+            {% else %}
+              <a href="?is_done=no" class="button is-danger">Mark as Pending</a>
+            {% endif %}
+          </div>
+          {% comment %} {% for todo in todolist %}{% endfor %} {% endcomment %}
+        </div>
+      </div>
+    </section>
+  </div>
+  {% include 'includes/footer.html' %}
+{% endblock %}

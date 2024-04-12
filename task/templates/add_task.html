@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-  Hydra Core || Editing Project
+  Hydra Core || Adding Task
 {% endblock %}
+
+
 
 {% block css_files %}
   <link rel="stylesheet" href="{% static 'account.css' %}" />
 {% endblock %}
-
 {% block content %}
   {% include 'includes/header.html' %}
 
@@ -15,22 +16,17 @@
     <div class="hero-body has-text-centered">
       <div class="login">
         <h1 class="title">Hydra Core</h1>
-        <h2 class="subtitle">Adding New Project</h2>
+        <br>
+        <h2 class="subtitle">Adding Task to <strong>"{{ todolist.name }}"</strong></h2>
         <form action="." method="POST">
           {% csrf_token %}
 
           <div class="field">
             <div class="control">
-              <input class="input is-medium is-rounded" type="text" placeholder="Project Title" name="name" value="{{project.name}}" required />
+              <input class="input is-medium is-rounded" type="text" placeholder="Task..." name="name" required />
             </div>
           </div>
-
-          <div class="field">
-            <div class="control">
-              <input class="input is-medium is-rounded" type="text" placeholder="Description" name="description" value="{{project.description}}" required />
-            </div>
-          </div>
-          <button class="button is-block is-fullwidth is-primary is-medium is-rounded" type="submit">Update Project</button>
+          <button class="button is-block is-fullwidth is-primary is-medium is-rounded" type="submit">Add</button>
         </form>
 
         <nav class="level">

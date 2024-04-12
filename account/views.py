@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from .models import User
 # Create your views here.
 
@@ -34,3 +34,7 @@ def login(request):
 
 def template(request):
     return render(request, "template.html")
+
+def logout(request):
+    auth_logout(request)
+    return redirect("/login")

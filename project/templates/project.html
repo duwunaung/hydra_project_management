@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}
-  Hydra Core || Projects
+  Hydra Core || Project
 {% endblock %}
 {% block content %}
   {% include 'includes/header.html' %}
@@ -10,10 +10,13 @@
       <div class="level">
         <div class="level-left">
           <div class="level-item">
-            <h2 class="subtitle">{{ project.name }}</h2>
+            <h2 class="title">{{ project.name }}</h2>
           </div>
         </div>
         <div class="level-right">
+          <div class="level-item">
+            <a href="{% url 'todolist:add-todo' project.id %}" class="button is-success">Add To-Do List</a>
+          </div>
           <div class="level-item">
             <a href="{% url 'project:edit-project' project.id %}" class="button is-link">Edit</a>
           </div>
@@ -22,8 +25,39 @@
           </div>
         </div>
       </div>
-      <div class="columns">
-        
+
+      <div class="columns is-multiline">
+        {% for todo in project.todolists.all %}
+        <div class="column is-6">
+          <div class="category box">
+            <div class="level">
+              <div class="level-left">
+                <div class="level-item">
+                  <h1 class="title is-5">{{ todo.name }} </h1>
+                  <span class="subtitle">{{ todo.description }}</span>
+                </div>
+              </div>
+              <div class="level-right">
+                <div class="level-item">
+                  <a href="{% url 'todolist:todolist' project.id todo.id %}" class="button is-link">Detail</a>
+                </div>
+              </div>
+            </div>
+              {% for task in todo.tasks.all %}
+                <i class="fas fa-caret-right fa-xs icon-padding-right" /></i>
+                {% if not task.is_done %}
+                <label class="subtitle is-6 has-text-black has-text-weight-medium">{{task.name}}</label>
+                <br>
+                  {% else %}
+                  <label style="text-decoration: line-through;" class="subtitle is-6 has-text-black has-text-weight-medium">{{task.name}}</span>
+                    {{task.name}}
+                  </label>
+                  <br>
+                  {% endif %}
+                {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
       </div>
     </section>
   </div>

@@ -23,6 +23,8 @@ INSTALLED_APPS = [
     "backbone",
     "account",
     "project",
+    "todolist",
+    "task",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -114,3 +116,5 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
+
+LOGIN_URL = '/login/'
