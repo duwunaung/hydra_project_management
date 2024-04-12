@@ -1,0 +1,11 @@
+<nav>
+    <h1>
+        <a href="{% url "backbone:index" %}">Hydra Core</a>
+    </h1>
+    {% if request.user.is_authenticated %}
+        <a href="{% url "project:projects" %}">Projects</a>
+    {% else %}
+        <a href="{% url "account:login" %}">Login</a> ||
+        <a href="{% url "account:signup" %}">Register</a>
+    {% endif %}
+</nav>

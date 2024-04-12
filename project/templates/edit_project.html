@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% include 'includes/header.html' %}
+  <h1>Projects</h1>
+  <h2>Edit your project</h2>
+  <form action="." method="POST">
+    {% csrf_token %}
+    <div>
+      <label for="name">Project Title</label>
+      <input type="text" name="name" id="name" value="{{ project.name }}" />
+    </div>
+    <div>
+      <label for="description">Project Description</label>
+      <textarea name="description" id="description" cols="30" rows="10">{{ project.description }}</textarea>
+    </div>
+    <button>Save</button>
+  </form>
+  {% include 'includes/footer.html' %}
+{% endblock %}

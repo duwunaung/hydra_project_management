@@ -4,3 +4,5 @@
 /backbone/__pycache__
 /backbone/migrations
 db.sqlite3
+/project/__pycache__
+/project/migrations

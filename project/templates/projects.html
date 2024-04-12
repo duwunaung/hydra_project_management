@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% include 'includes/header.html' %}
+  <h1>Projects</h1>
+  <a href="{% url 'project:create-project' %}">Add Project</a>
+  <ul>
+    {% for project in projects %}
+      <li>
+        <a href="{% url 'project:detail-project' project.id %}">{{ project.name }} ( {{ project.description }} )</a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% include 'includes/footer.html' %}
+{% endblock %}

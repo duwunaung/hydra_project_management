@@ -22,6 +22,7 @@ AUTH_USER_MODEL = "account.user"
 INSTALLED_APPS = [
     "backbone",
     "account",
+    "project",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
