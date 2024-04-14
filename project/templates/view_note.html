@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  Hydra Core || Note
+{% endblock %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static 'account.css' %}" />
+{% endblock %}
+{% block content %}
+  {% include 'includes/header.html' %}
+
+  <div class="container is-max-desktop">
+    <section class="featured">
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <a href="{% url "project:detail-project" note.project.id %}" class="button is-success"><</a>
+          </div>
+          <div class="level-item">
+            <h2 class="title">{{ note.name }}</h2>
+          </div>
+        </div>
+        <div class="level-right">
+          <div class="level-item">
+            <a href="{% url "project:edit-note" note.project.id note.id %}" class="button is-link">Edit</a>
+            
+          </div>
+          <div class="level-item">
+            <a href="{% url "project:delete-note" note.project.id note.id %}" class="button is-danger">Delete</a>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <p>
+          {{ note.body|linebreaks }}
+        </p>
+      </div>
+    </section>
+  </div>
+  {% include 'includes/footer.html' %}
+{% endblock %}

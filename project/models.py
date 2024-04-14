@@ -18,3 +18,12 @@ class ProjectFile(models.Model):
     project = models.ForeignKey(Project, related_name="files", on_delete=models.CASCADE)
     def __str__(self):
         return self.name
+    
+class ProjectNote(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=20)
+    body = models.TextField(blank=True, null=True)
+    project = models.ForeignKey(Project, related_name="notes", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  Hydra Core || Editing Note
+{% endblock %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static 'account.css' %}" />
+{% endblock %}
+
+
+{% block content %}
+  {% include 'includes/header.html' %}
+
+  <section class="hero is-fullheight">
+    <div class="hero-body has-text-centered">
+      <div class="login">
+        <h1 class="title">Hydra Core</h1>
+        <br>
+        <h2 class="subtitle">Editing Note of <strong>"{{ project.name }}"</strong></h2>
+        <form action="." method="POST">
+          {% csrf_token %}
+
+          <div class="field">
+            <div class="control">
+              <input class="input is-medium is-rounded" type="text" placeholder="Title" name="name" value="{{note.name}}" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <input class="input is-medium is-rounded" type="text" placeholder="Content" name="body" value="{{note.body}}" required />
+            </div>
+          </div>
+          <button class="button is-block is-fullwidth is-primary is-medium is-rounded" type="submit">Update Note</button>
+        </form>
+
+        <nav class="level">
+          <div class="level-item has-text-centered">
+            <div>
+              <a href="{% url 'project:detail-project' note.project.id %}">Cancel</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </section>
+  {% include 'includes/footer.html' %}
+{% endblock %}

@@ -93,13 +93,47 @@
             <article class="box">
               <h2 class="is-size-5">{{ file.name }}</h2>
               <br>
-              <a href="{{ file.attachment.url }}" target="_blank">View</a> || 
+              {% if file.attachment %}
+              <a href="{{ file.attachment.url }}" target="_blank">View</a> || {% endif %}
               <a href="{% url "project:delete-attachment" project.id file.id %}">Delete</a>
             </article>
           </div>
         {% endfor %}
       </div>
 
+
+      {% comment %} Notes {% endcomment %}
+      
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <h2 class="subtitle">Notes</h2>
+          </div>
+        </div>
+        <div class="level-right">
+          <div class="level-item">
+            <a href="{% url 'project:add-note' project.id %}" class="button is-success">Add Note</a>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="columns is-multiline">
+        {% for note in project.notes.all %}
+          <div class="column is-3">
+            <article class="box">
+              <h2 class="is-size-5">{{ note.name }}</h2>
+              <br>
+              {{ note.body|truncatechars:50 }}
+              <br>
+              <a href="{% url "project:detail-note" project.id note.id %}">Read</a> ||
+              <a href="{% url "project:edit-note" note.project.id note.id %}">Edit</a> ||
+
+              <a href="{% url "project:delete-note" project.id note.id %}">Delete</a>
+            </article>
+          </div>
+        {% endfor %}
+      </div>
     </section>
   </div>
   {% include 'includes/footer.html' %}
