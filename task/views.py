@@ -15,7 +15,7 @@ def add_task(request, project_id, todolist_id):
         name = request.POST.get("name", "")
         task = Task.objects.create(
             project=project, created_by=request.user, todolist=todolist, name=name)
-        return redirect(f"/projects/{project_id}/{todolist_id}")
+        return redirect(f"/projects/{project_id}/todo/{todolist_id}/")
     return render(request, "add_task.html", {
         "todolist": todolist
     })
@@ -55,7 +55,7 @@ def edit_task(request, project_id, todolist_id, pk):
 
         task.save()
         print(f"/projects/{project_id}/{todolist_id}/{pk}")
-        return redirect(f"/projects/{project_id}/{todolist_id}/{pk}")
+        return redirect(f"/projects/{project_id}/todo/{todolist_id}/task/{pk}")
 
     return render(request, "edit_task.html", {
         "task": task,
@@ -69,4 +69,4 @@ def delete_task(request, project_id, todolist_id, pk):
     todolist = Todolist.objects.filter(project=project).get(pk=todolist_id)
     task = Task.objects.filter(todolist=todolist).get(pk=pk)
     task.delete()
-    return redirect(f"/projects/{project_id}/{todolist_id}/")
+    return redirect(f"/projects/{project_id}/todo/{todolist_id}/")

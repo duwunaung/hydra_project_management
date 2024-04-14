@@ -15,6 +15,9 @@
       <div class="level">
         <div class="level-left">
           <div class="level-item">
+            <a href="{% url 'project:detail-project' project.id %}" class="button is-success"><</a>
+          </div>
+          <div class="level-item">
             <h2 class="title">{{ todolist.name }}</h2>
             <h2 class="subtitle">({{ todolist.description }})</h2>
           </div>

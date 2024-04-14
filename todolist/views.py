@@ -17,7 +17,7 @@ def add_todo(request, project_id):
             todolist = Todolist.objects.create(
                 project=project, name=name, description=description, created_by=request.user)
 
-            return redirect(f"/projects/{project_id}")
+            return redirect(f"/projects/{project_id}/")
 
     return render(request, "add_todo.html", {
         "project": project

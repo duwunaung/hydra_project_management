@@ -32,8 +32,7 @@
         <nav class="level">
           <div class="level-item has-text-centered">
             <div>
-              <a href="{% url 'task:detail-task' todolist.project.id todolist.id task.id %}">Cancel</a>
-            </div>
+              <a href="{% url 'task:detail-task' task.project.id task.todolist.id task.id %}">Cancel</a>            </div>
           </div>
         </nav>
       </div>
