@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from .models import Project
+from .models import Project, ProjectFile
+# import os
 
 @login_required
 def projects(request):
@@ -50,3 +51,26 @@ def delete_project(request, pk):
     project = Project.objects.filter(created_by = request.user).get(pk=pk)
     project.delete()
     return redirect("/projects/")
+
+# Handling Attachment File
+@login_required
+def add_attachment(request, project_id):
+    project = Project.objects.filter(created_by = request.user).get(pk=project_id)
+
+    if request.method == "POST":
+        name = request.POST.get("name", "")
+        attachment = request.FILES.get("attachment", "")
+
+        attachment = ProjectFile.objects.create(name=name, attachment=attachment, project = project)
+        return redirect (f"/projects/{project_id}/")
+    return render(request, "add_file.html", {
+        "project" : project
+    })
+
+@login_required
+def delete_attachment(request, project_id, pk):
+    project = Project.objects.filter(created_by = request.user).get(pk=project_id)
+    attachment = ProjectFile.objects.filter(project = project).get(pk=pk)
+    # os.remove(attachment.attachment.url)
+    attachment.delete()
+    return redirect(f"/projects/{project_id}/")

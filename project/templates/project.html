@@ -70,6 +70,36 @@
         </div>
         {% endfor %}
       </div>
+
+
+      {% comment %} File Upload {% endcomment %}
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <h2 class="subtitle">Attachments</h2>
+          </div>
+        </div>
+        <div class="level-right">
+          <div class="level-item">
+            <a href="{% url 'project:add-attachment' project.id %}" class="button is-success">Upload File</a>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="columns is-multiline">
+        {% for file in project.files.all %}
+          <div class="column is-3">
+            <article class="box">
+              <h2 class="is-size-5">{{ file.name }}</h2>
+              <br>
+              <a href="{{ file.attachment.url }}" target="_blank">View</a> || 
+              <a href="{% url "project:delete-attachment" project.id file.id %}">Delete</a>
+            </article>
+          </div>
+        {% endfor %}
+      </div>
+
     </section>
   </div>
   {% include 'includes/footer.html' %}

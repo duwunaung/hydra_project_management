@@ -9,4 +9,7 @@ urlpatterns = [
     path("<uuid:pk>/", views.detail_project, name="detail-project"),
     path("<uuid:pk>/edit/", views.edit_project, name="edit-project"),
     path("<uuid:pk>/delete/", views.delete_project, name="delete-project"),
+    path("<uuid:project_id>/attachment/add_attachment/", views.add_attachment, name="add-attachment"),
+    path("<uuid:project_id>/attachment/<uuid:pk>/delete/", views.delete_attachment, name="delete-attachment")
+
 ]

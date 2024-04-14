@@ -1,6 +1,9 @@
 from django.contrib import admin
 from django.urls import path, include
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("backbone.urls")),
@@ -8,5 +11,4 @@ urlpatterns = [
     path("projects/", include("project.urls")),
     path("projects/<uuid:project_id>/", include("todolist.urls")),
     path("projects/<uuid:project_id>/todo/<uuid:todolist_id>/", include("task.urls")),
-]
-
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
